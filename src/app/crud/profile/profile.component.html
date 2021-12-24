@@ -1,0 +1,124 @@
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0  font-weight-bold text-primary">My Profile</h6>
+        </div>
+        <div class="card-body">
+            <form action="">
+            <div class="row">
+                        <div class="col-xl-4">
+                            <!-- Profile picture card-->
+                            <div class="card mb-4 mb-xl-0">
+                                <div class="card-header">Profile Picture</div>
+                                <div class="card-body text-center">
+                                    <!-- Profile picture image-->
+                                    <img class="img-account-profile  mb-2 w-100" [src]="profileImage" alt="">
+                                    <!-- Profile picture help block-->
+                                    <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+                                    <!-- Profile picture upload button-->
+                                    <button class="btn btn-primary" type="button"(click)="open(content)">Upload new image</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-8">
+                            <!-- Account details card-->
+                            <div class="card mb-4">
+                                <div class="card-header">Account Details</div>
+                                <div class="card-body">
+                                    <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">                                       
+                                        <!-- Form Row-->
+                                        <div class="row gx-3 mb-3">
+                                            <!-- Form Group (first name)-->
+                                            <div class="col-md-12">
+                                                <div class="mb-3">
+                                                    <label class="small mb-1">First name</label>
+                                                    <input class="form-control" formControlName="first" [ngClass]="{'is-invalid': submitted && f.first.errors}" type="text" placeholder="Enter your first name">
+                                                    <div class="invalid-feedback">
+                                                        <div>This feild is required</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Form Group (last name)-->
+                                            <div class="col-md-12">
+                                                <label class="small mb-1">Last name</label>
+                                                <input class="form-control" type="text" formControlName="last" [ngClass]="{'is-invalid': submitted && f.last.errors}"  placeholder="Enter your last name" >
+                                                <div class="invalid-feedback">
+                                                    <div>This feild is required</div>
+                                                </div>
+                                            </div>
+                                        </div>                                       
+                                
+                                        <div class="row gx-3 mb-3">
+                                            <!-- Form Group (first name)-->
+                                            <div class="col-md-12">
+                                                <div class="mb-3">
+                                                    <label class="small mb-1">Email address</label>
+                                                    <input class="form-control" type="email" [value]="email" disabled  placeholder="Enter your email address">                                                    
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="mb-3">
+                                                    <label class="small mb-1">Phone number</label>
+                                                    <input class="form-control" type="tel" formControlName="phone" [ngClass]="{'is-invalid': submitted && f.phone.errors}" placeholder="Enter your phone number">
+                                                    <div class="invalid-feedback">
+                                                        <div>This feild is required</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="mb-3">
+                                                    <label class="small mb-1">Gender</label>
+                                                    <select class="form-control"  formControlName="gender">
+                                                        <option value="male" [selected]="gender==1">Male</option>
+                                                        <option value="female" [selected]="gender==0">Female</option>
+                                                        <option value="transgender"[selected]="gender==2" >Transgender</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Form Row-->                                      
+                                        <div class="form-group text-right mt-5">
+                                            <button type="submit" [disabled]="loaderActive" class="btn btn-primary"><i class="fa fa-paper-plane"></i> Submit <i *ngIf="loaderActive" class=" ml-2 fas fa-sync fa-spin"></i></button>                                                                            
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                                    
+               
+
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Hi there!</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <!-- <input type="file" (change)="fileChangeEvent($event)" #file />
+        <image-cropper
+            [imageChangedEvent]="imageChangedEvent"
+            [maintainAspectRatio]="true"
+            [aspectRatio]="4 / 3"
+            format="png"
+            (imageCropped)="imageCropped($event)"          
+            (cropperReady)="cropperReady()"
+            (loadImageFailed)="loadImageFailed()"
+        ></image-cropper> -->
+        <!-- <img [src]="croppedImage" /> -->
+        <form (change)="saveProfileImage($event)" enctype="multipart/form-data">
+            <input type="file" name="avatar" />    
+        </form>
+    </div>
+    <div class="modal-footer">
+     
+    </div>
+  </ng-template>

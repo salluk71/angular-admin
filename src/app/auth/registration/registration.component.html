@@ -1,0 +1,95 @@
+
+<section style="background-color: #172902;">
+
+    <div class="container">
+        <!-- Outer Row -->
+        <div class="row justify-content-center align-items-center" style="height: 100vh;">
+            <div class="col-xl-10 col-lg-12 col-md-9">
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                            <div class="col-lg-6">
+                                <div class="p-4">
+                                    <div class="text-center">
+                                        <figure style="margin: auto;margin-bottom: 10px;"><img src="assets/img/Final_logo_100px.png" class="img-fluid" alt=""></figure>
+                                        <h1 class="h5 text-gray-900 mb-3 text-left mt-4">Please Register New Account!</h1>
+                                    </div>
+                                    <form class="user" [formGroup]="form"  (ngSubmit)="onSubmit(form.value)">
+                                        <div class="row">
+                                            <div class="col-sm-6 pr-1">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" formControlName="first"  placeholder="First Name" [ngClass]="{'is-invalid': submitted && f.first.errors}">
+                                                    <div class="invalid-feedback">
+                                                        <div>First Name is required</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 pl-1">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" formControlName="last"  placeholder="Last Name" [ngClass]="{'is-invalid': submitted && f.last.errors}">
+                                                    <div class="invalid-feedback">
+                                                        <div>Last Name is required</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" formControlName="email"  placeholder="Enter Email Address..." [ngClass]="{'is-invalid': submitted && f.email.errors}">
+                                            <div class="invalid-feedback" *ngIf="submitted && f.email.errors">
+                                                <div *ngIf="f.email.errors.required">Email is required</div>
+                                                <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <select class="form-control"  formControlName="gender" [ngClass]="{'is-invalid': submitted && f.gender.errors}">
+                                                <option value="" hidden>Please Select Gender</option>
+                                                <option value="male">Male</option>
+                                                <option value="female">Female</option>
+                                                <option value="transgender">Transgender</option>
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                <div>Gender is required</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="col-sm-6 pr-1">
+                                                <div class="form-group">
+                                                    <input type="password" class="form-control"  (keyup)="passwordMatch()" formControlName="password"  placeholder="Password" [ngClass]="{'is-invalid': submitted && f.password.errors }">
+                                                    <div class="invalid-feedback">
+                                                        <div>Password is required</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 pl-1">
+                                                <div class="form-group">
+                                                    <input type="password" class="form-control" (keyup)="passwordMatch()" formControlName="confirm_password"  placeholder="Confirm Password" [ngClass]="{'is-invalid': submitted && f.confirm_password.errors }">
+                                                    <div class="invalid-feedback"  [ngClass]="{'is-invalid': submitted && f.confirm_password.errors}">
+                                                        <div > Confirm Password is required</div>
+                                                    </div>
+                                                    <div class="invalid-feedback  d-block" *ngIf=" notMatched && !f.confirm_password.errors">
+                                                        <div> Confirm Password is not Match</div>
+                                                    </div>                                                                                                                                                      
+                                                </div>
+                                            </div>
+                                        </div>                                       
+                                        <button type="submit" [disabled]="loaderActive || notMatched" class="btn btn-primary btn-user btn-block"> Create Account <i *ngIf="loaderActive" class=" ml-2 fas fa-sync fa-spin"></i></button>                                       
+                                    </form>
+                                    <hr> 
+                                    <div class="text-center">
+                                        <a class="small" routerLink="/">Already have an Account? Login!</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>

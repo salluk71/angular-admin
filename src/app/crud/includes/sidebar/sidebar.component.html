@@ -1,0 +1,33 @@
+<ul class="navbar-nav sidebar bg-white sidebar-dark accordion" id="accordionSidebar" [ngClass]="{'active': SidebartoggleValue}">
+
+  <li>
+    <a class="sidebar-brand d-flex align-items-center  p-3" [routerLink]="['/admin']" >
+      <div class="sidebar-brand-icon">
+        <figure style="max-width: 50px; margin: auto;"><img src="assets/img/small-logo.png" class="img-fluid" alt="">
+        </figure>
+      </div>
+      <div class="sidebar-brand-text ">
+        <figure style="max-width: 140px; margin: auto;margin-bottom: 10px;"><img src="assets/img/Final_logo_100px.png"
+            class="img-fluid" alt=""></figure>
+      </div>
+    </a>
+  </li>
+
+  <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"  >
+    <a class="nav-link" routerLink="/admin"  > <i class="fas fa-fw fa-tachometer-alt"></i><span> Dashboard</span></a>
+  </li>
+
+  <li class="nav-item" routerLinkActive="active">
+    <a class="nav-link"  routerLink="category" > <i class="fas fa-fw fa-folder"></i><span> Category</span></a>
+  </li>
+  <li class="nav-item" routerLinkActive="active">
+    <a class="nav-link"  routerLink="sub-category" > <i class="fas fa-fw fa-folder"></i><span>Sub Category</span></a>
+  </li>
+
+
+  <!-- Sidebar Toggler (Sidebar) -->
+  <!-- <div class="text-center d-none d-md-inline mt-4">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div> -->
+
+</ul>

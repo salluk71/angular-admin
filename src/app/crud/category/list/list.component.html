@@ -1,0 +1,59 @@
+<div class="container-fluid">
+
+    <!-- Page Heading -->                
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex justify-content-between align-items-center">
+            <h6 class="m-0 font-weight-bold text-primary">View Species</h6>
+            <div class="buttons">
+                <a routerLink="add" class="btn btn-success"><i class="fa fa-download"></i> Import</a>                                
+                <a routerLink="add" class="btn btn-dark mx-2"><i class="fa fa-upload"></i> Export</a>                                
+                <a routerLink="add" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Add New</a>                                
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered dataTable" datatable  id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Image</th>
+                            <th>Created</th>
+                            <th>Updated</th>                                     
+                            <th>Action</th>
+                        </tr>
+                    </thead>                                   
+                    <tbody>
+                                                                                                                       
+                        <tr *ngFor="let item of list; index as i;" #ele>
+                            <td>{{item.title}}</td>                                     
+                            <td><button *ngIf="item.image" type="button"(click)="open(content , item.image)"class="btn btn-danger btn-sm"><i class="fa fa-image"></i></button></td>                                     
+                            <td>{{item.createdAt | date: 'dd/MM/yyyy, h:mm a' }}</td>                         
+                            <td>{{item.updatedAt |  date: 'dd/MM/yy, h:mm a' }}</td>                                                                          
+                            <td>
+                                <div class="buttons d-flex">
+                                    <button *ngIf="item.status" title="Click to Inactive" class="btn btn-sm btn-outline-success"  (click)="activeDeactivate(item._id, 'Deactivate')"><i class="fa fa-check"></i></button>
+                                    <button *ngIf="!item.status" title="Click to Active" class="btn btn-sm btn-outline-warning"  (click)="activeDeactivate(item._id, 'Activate')"><i class="fa fa-ban"></i></button>
+                                    <button title="Edit" class="btn btn-sm btn-outline-dark" routerLink="edit/{{item._id}}" ><i class="fa fa-pen"></i></button>
+                                    <button title="Remove" class="btn btn-sm btn-outline-danger" (click)="remove(item._id , ele)"><i class="fa fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>                                                                                                                                                                                                                                            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Hi there!</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <img [src]="img" alt="" class="img-fluid">
+    </div>   
+  </ng-template>
